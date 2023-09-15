@@ -1,12 +1,30 @@
-# Welcome to your CDK TypeScript Construct Library project
+# CDK Queue DataDog Monitor Construct
 
-You should explore the contents of this project. It demonstrates a CDK Construct Library that includes a construct (`CdkQueueDdConstruct`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+AWS CodeBuild Step that can be added into a CodePipline workflow which will build a DataDog Monitor
 
-The construct defines an interface (`CdkQueueDdConstructProps`) to configure the visibility timeout of the queue.
+## Installation
 
-## Useful commands
+```bash
+npm i cdk-queue-dd-construct"
+```
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
+## Usage
+
+Use this Construct as a CodeBuildStep in a CodePipeline
+
+```typescript
+let stageDeployment = pipeline.addStage(stage);
+const queueConstruct = new CdkQueueDdConstruct(this, `QueueStage`, {
+	queueName: "alarm-queue-name",
+	readableQueueName: "Sample Alarm Queue",
+	slackChannel: "@slack-operational-issues",
+});
+stageDeployment.addPost(queueConstruct.monitorStep);
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
