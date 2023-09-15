@@ -8,6 +8,22 @@
 		"watch": "tsc -w",
 		"test": "jest"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/benbpyle/cdk-queue-dd-construct.git"
+	},
+	"keywords": [
+		"Datadog",
+		"Monitor",
+		"SQS",
+		"AWS"
+	],
+	"author": "Benjamen Pyle",
+	"license": "GPL",
+	"bugs": {
+		"url": "https://github.com/benbpyle/cdk-queue-dd-construct/issues"
+	},
+	"homepage": "https://github.com/benbpyle/cdk-queue-dd-construct#readme",
 	"devDependencies": {
 		"@types/jest": "^29.5.4",
 		"@types/node": "20.5.3",
