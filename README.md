@@ -1,4 +1,4 @@
-# CDK Queue DataDog Monitor Construct
+# CDK Queue Datadog Monitor Construct
 
 AWS CodeBuild Step that can be added into a CodePipline workflow which will build a DataDog Monitor
 
