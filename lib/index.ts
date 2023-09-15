@@ -2,7 +2,10 @@
 import { CodeBuildStep } from "aws-cdk-lib/pipelines";
 import { Construct } from "constructs";
 import { CdkQueueDdConstructProps } from "./props";
-import { LinuxBuildImage } from "aws-cdk-lib/aws-codebuild";
+import {
+	BuildEnvironmentVariableType,
+	LinuxBuildImage,
+} from "aws-cdk-lib/aws-codebuild";
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class CdkQueueDdConstruct extends Construct {
@@ -13,7 +16,19 @@ export class CdkQueueDdConstruct extends Construct {
 
 		this._codeBuildStep = new CodeBuildStep("AddDatadogSqsMonitor", {
 			commands: this.buildCommands(props),
-			buildEnvironment: { buildImage: LinuxBuildImage.STANDARD_7_0 },
+			buildEnvironment: {
+				buildImage: LinuxBuildImage.STANDARD_7_0,
+				environmentVariables: {
+					DD_API_KEY: {
+						value: props.datadogApiKeySecret,
+						type: BuildEnvironmentVariableType.SECRETS_MANAGER,
+					},
+					DD_APP_KEY: {
+						value: props.datadogAppKeySecret,
+						type: BuildEnvironmentVariableType.SECRETS_MANAGER,
+					},
+				},
+			},
 		});
 	}
 
@@ -30,4 +45,10 @@ export class CdkQueueDdConstruct extends Construct {
 			`${command}`,
 		];
 	}
+}
+function BuildEnvironmentVariable(
+	arg0: any,
+	arg1: string,
+): import("aws-cdk-lib/aws-codebuild").BuildEnvironmentVariable {
+	throw new Error("Function not implemented.");
 }
