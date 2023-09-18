@@ -46,9 +46,3 @@ export class CdkQueueDdConstruct extends Construct {
 		];
 	}
 }
-function BuildEnvironmentVariable(
-	arg0: any,
-	arg1: string,
-): import("aws-cdk-lib/aws-codebuild").BuildEnvironmentVariable {
-	throw new Error("Function not implemented.");
-}
